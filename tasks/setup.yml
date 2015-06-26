@@ -16,13 +16,13 @@
   when: _installed.rc == 1
 
 - name: NodeJS | Configure
-  shell: /usr/bin/python ./configure --prefix={{ node_path }} chdir={{ node_tmp_path }}{{ node_prefix }}
+  shell: /usr/bin/python ./configure --prefix={{ node_path }} chdir={{ node_tmp_path }}/{{ node_prefix }}
   when: _installed.rc == 1
 
 - name: NodeJS | Make
-  shell: /usr/bin/make chdir={{ node_tmp_path }}{{ node_prefix }}/
+  shell: /usr/bin/make chdir={{ node_tmp_path }}/{{ node_prefix }}/
   when: _installed.rc == 1
 
 - name: NodeJS | Make install
-  shell: /usr/bin/make install chdir={{ node_tmp_path }}{{ node_prefix }}/
+  shell: /usr/bin/make install chdir={{ node_tmp_path }}/{{ node_prefix }}/
   when: _installed.rc == 1

@@ -1,4 +1,11 @@
-- include: setup.yml tags=nodejs
+---
+
+- include: setup.yml
+  tags: nodejs
 
 - name: Install npm
-  apt: pkg=npm state=latest
+  apt:
+    name=npm
+    state=latest
+  become: yes
+

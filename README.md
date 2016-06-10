@@ -50,7 +50,7 @@ None.
 
   - hosts: servers
     roles:
-       - palkan.nodejs
+       - role: ansiblebit.nodejs
 
 
 ## Tags

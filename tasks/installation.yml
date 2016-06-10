@@ -29,12 +29,12 @@
   become: yes
 
 - name: installation | configure
-  shell: /usr/bin/python ./configure --prefix={{ nodejs_path }}
+  command: /usr/bin/python ./configure --prefix={{ nodejs_path }}
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
 
 - name: installation | make
   shell: /usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/
 
 - name: installation | make install
-  shell: /usr/bin/make install
+  command: /usr/bin/make install
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}/"

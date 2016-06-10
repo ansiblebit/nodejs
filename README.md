@@ -33,6 +33,7 @@ it may be a good idea to mention in this section that the boto package is requir
 
 ## Role Variables
 
+- *nodejs_apt_dependencies*: the APT dependencies needed to run this role.
 - *nodejs_version*: [NodeJS][nodejs] version to be installed.
 - *nodejs_prefix*: the filename prefix of the [NodeJS][nodejs] tarball.
 - *nodejs_tarball*: the filename for the [NodeJS][nodejs] tarball.

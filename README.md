@@ -28,11 +28,16 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 For instance, if the role uses the EC2 module,
 it may be a good idea to mention in this section that the boto package is required.
 
-- ansible >= 1.7.2
+- ansible >= 1.9
+
 
 ## Role Variables
 
-- **:
+- *nodejs_version*: [NodeJS][nodejs] version to be installed.
+- *nodejs_prefix*: the filename prefix of the [NodeJS][nodejs] tarball.
+- *nodejs_tarball*: the filename for the [NodeJS][nodejs] tarball.
+- *nodejs_path*: the directory where to install [NodeJS][nodejs].
+- *nodejs_dir_src*: directory where to store the [NodeJS][nodejs] source.
 
 
 ## Dependencies
@@ -92,10 +97,14 @@ $ vagrant ssh trusty64.vagrant.dev
 
 ## Links
 
+- [NodeJS][nodejs]
+- [palkan/nodejs][palkan/nodejs]
+
 
 ## License
 
-BSD
+[BSD][bsd]
+
 
 ## Author Information
 
@@ -103,6 +112,8 @@ BSD
 - [steenzout][steenzout]
 
 [ansible]:      https://www.ansible.com         "Ansible"
+[bsd]:          https://github.com/ansiblebit/nodejs/blob/master/LICENSE "BSD license"
 [nodejs]:       https://nodejs.org/             "NodeJS"
 [palkan]:       https://github.com/palkan/      "Vladimir Dementyev"
+[palkan/nodejs]: https://github.com/palkan-ansible/nodejs "Palkan's NodeJS Ansible role"
 [steenzout]:    http://github.com/steenzout/    "Pedro Salgado"

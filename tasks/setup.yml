@@ -19,17 +19,19 @@
 
 - name: setup | fetching source
   get_url:
-    url=http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}
-    dest={{ nodejs_dir_src }}
+    url="http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}"
+    dest="{{ nodejs_dir_src }}"
     mode=0440
   when: task_installed.rc == 1
 
 - name: setup | unpack tarball
-  command: tar zxf {{ nodejs_tarball }} chdir=/tmp
+  command: "tar zxf {{ nodejs_tarball }}"
+    chdir=/tmp
   when: task_installed.rc == 1
 
 - name: setup | configure
-  shell: "/usr/bin/python ./configure --prefix={{ nodejs_path }} chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}"
+  shell: "/usr/bin/python ./configure --prefix={{ nodejs_path }}"
+    chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
   when: task_installed.rc == 1
 
 - name: setup | make
@@ -37,5 +39,6 @@
   when: task_installed.rc == 1
 
 - name: setup | make install
-  shell: "/usr/bin/make install chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
+  shell: "/usr/bin/make install"
+    chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
   when: task_installed.rc == 1

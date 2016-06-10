@@ -25,20 +25,25 @@
   when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | unpack tarball
-  command: "tar zxf {{ nodejs_tarball }}"
-    chdir=/tmp
+  unarchive:
+    src="{{ nodejs_dir_src }}/{{ nodejs_tarball }}"
+    dest="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
+    copy=no
+    owner="{{ ansible_ssh_user }}"
+    group="{{ ansible_ssh_user }}"
+  become: yes
   when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | configure
-  shell: "/usr/bin/python ./configure --prefix={{ nodejs_path }}"
+  shell: /usr/bin/python ./configure --prefix={{ nodejs_path }}
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
   when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | make
-  shell: "/usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
+  shell: /usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/
   when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | make install
-  shell: "/usr/bin/make install"
+  shell: /usr/bin/make install
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
   when: task_installed is defined and task_installed.rc == 1

@@ -8,9 +8,15 @@
   vars:
     debug: yes
 
+  pre_tasks:
+    - name: ensure APT cache is up-to-date
+      apt:
+        update_cache=yes
+        cache_valid_time=3600
+      become: yes
+
   roles:
     - role: nodejs
 
     - role: tests
       tags: test
-

@@ -4,12 +4,6 @@
 # setup.
 #
 
-- name: setup | checking installed version
-  shell: "/usr/bin/test \"$(node -v 2> /dev/null)\" = v{{ nodejs_version }}"
-  register: task_installed
-  changed_when: false
-  ignore_errors: yes
-
 - name: setup | purge previous
   apt:
     pkg=node
@@ -22,6 +16,15 @@
     url="http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}"
     dest="{{ nodejs_dir_src }}"
     mode=0440
+  when: task_installed is defined and task_installed.rc == 1
+  become: yes
+
+- name: setup | ensure unarchive directory exists
+  file:
+    path="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
+    state=directory
+    owner="{{ ansible_ssh_user }}"
+    group="{{ ansible_ssh_user }}"
   when: task_installed is defined and task_installed.rc == 1
   become: yes
 

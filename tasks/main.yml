@@ -16,6 +16,7 @@
     name="{{ item }}"
     state=present
   with_items: "{{ nodejs_apt_dependencies }}"
+  become: yes
 
 - name: checking installed version
   shell: "/usr/bin/test \"$(node -v 2> /dev/null)\" = v{{ nodejs_version }}"

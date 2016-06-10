@@ -14,3 +14,11 @@
 - debug: >
     msg="invoked"
 
+- include: setup.yml
+  tags: nodejs
+
+- name: Install npm
+  apt:
+    name=npm
+    state=latest
+  become: yes

@@ -4,10 +4,13 @@
 # validation tasks.
 #
 
-- name: ensure mandatory variables are set
+- name: validation | ensure mandatory variables are set
   fail:
     msg="{{ item }} is a mandatory variable"
   when: "{{ item }} is not defined"
   with_items:
-    - debug
-
+    - nodejs_version
+    - nodejs_prefix
+    - nodejs_tarball
+    - nodejs_path
+    - nodejs_dir_src

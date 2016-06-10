@@ -9,4 +9,8 @@
   when: "{{ item }} is defined"
   with_items:
     - debug
-
+    - nodejs_dir_src
+    - nodejs_path
+    - nodejs_prefix
+    - nodejs_tarball
+    - nodejs_version

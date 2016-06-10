@@ -38,3 +38,4 @@
 - name: installation | make install
   command: /usr/bin/make install
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
+  become: yes

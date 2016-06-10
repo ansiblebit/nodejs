@@ -24,8 +24,8 @@
     src="{{ nodejs_dir_src }}/{{ nodejs_tarball }}"
     dest="{{ nodejs_dir_src }}"
     copy=no
-    owner="{{ ansible_ssh_user }}"
-    group="{{ ansible_ssh_user }}"
+    owner="{{ ansible_env.USER }}"
+    group="{{ ansible_env.USER }}"
   become: yes
 
 - name: installation | configure

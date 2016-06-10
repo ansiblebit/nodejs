@@ -6,18 +6,21 @@
 
 galaxy_info:
   author: Pedro Salgado, Vlad Dem
-  description: Install NodeJS
+  description: Ansible role to setup NodeJS.
   company: ansiblebit.org
-  license: MIT
+  license: BSD
   min_ansible_version: 1.9.6
   platforms:
     - name: Ubuntu
       versions:
+        - yakkety
+        - xenial
         - trusty
         - precise
     - name: Debian
       versions:
-        - all
+        - jessie
+        - wheezy
   galaxy_tags:
     - development
 dependencies: []

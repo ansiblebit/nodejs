@@ -22,7 +22,7 @@
 - name: installation | unpack tarball
   unarchive:
     src="{{ nodejs_dir_src }}/{{ nodejs_tarball }}"
-    dest="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
+    dest="{{ nodejs_dir_src }}"
     copy=no
     owner="{{ ansible_ssh_user }}"
     group="{{ ansible_ssh_user }}"

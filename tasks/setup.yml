@@ -5,7 +5,7 @@
 #
 
 - name: setup | checking installed version
-  shell: "/usr/bin/test "$(node -v 2> /dev/null)" = v{{ nodejs_version }}"
+  shell: "/usr/bin/test \"$(node -v 2> /dev/null)\" = v{{ nodejs_version }}"
   register: task_installed
   changed_when: false
   ignore_errors: yes

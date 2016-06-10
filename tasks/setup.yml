@@ -5,7 +5,7 @@
 #
 
 - name: NodeJS | Checking installed version
-  shell: /usr/bin/test "$(node -v 2> /dev/null)" = v{{ node_version }}
+  shell: /usr/bin/test "$(node -v 2> /dev/null)" = v{{ nodejs_version }}
   register: _installed
   ignore_errors: True
 
@@ -14,21 +14,21 @@
   when: _installed.rc == 1
 
 - name: NodeJS | Fetching source
-  get_url: url=http://nodejs.org/dist/v{{ node_version }}/{{ node_tarball }} dest={{ node_tmp_path }}
+  get_url: url=http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }} dest={{ nodejs_tmp_path }}
   when: _installed.rc == 1
 
 - name: NodeJS | Unpack tarball
-  command: tar zxf {{ node_tarball }} chdir=/tmp
+  command: tar zxf {{ nodejs_tarball }} chdir=/tmp
   when: _installed.rc == 1
 
 - name: NodeJS | Configure
-  shell: /usr/bin/python ./configure --prefix={{ node_path }} chdir={{ node_tmp_path }}/{{ node_prefix }}
+  shell: /usr/bin/python ./configure --prefix={{ nodejs_path }} chdir={{ nodejs_tmp_path }}/{{ nodejs_prefix }}
   when: _installed.rc == 1
 
 - name: NodeJS | Make
-  shell: /usr/bin/make chdir={{ node_tmp_path }}/{{ node_prefix }}/
+  shell: /usr/bin/make chdir={{ nodejs_tmp_path }}/{{ nodejs_prefix }}/
   when: _installed.rc == 1
 
 - name: NodeJS | Make install
-  shell: /usr/bin/make install chdir={{ node_tmp_path }}/{{ node_prefix }}/
+  shell: /usr/bin/make install chdir={{ nodejs_tmp_path }}/{{ nodejs_prefix }}/
   when: _installed.rc == 1

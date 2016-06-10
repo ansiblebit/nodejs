@@ -15,8 +15,8 @@
   file:
     path="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
     state=directory
-    owner="{{ ansible_ssh_user }}"
-    group="{{ ansible_ssh_user }}"
+    owner="{{ ansible_env.USER }}"
+    group="{{ ansible_env.USER }}"
   become: yes
 
 - name: installation | unpack tarball

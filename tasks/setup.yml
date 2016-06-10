@@ -4,38 +4,38 @@
 # setup.
 #
 
-- name: checking installed version
+- name: setup | checking installed version
   shell: "/usr/bin/test "$(node -v 2> /dev/null)" = v{{ nodejs_version }}"
   register: task_installed
   changed_when: false
   ignore_errors: yes
 
-- name: purge previous
+- name: setup | purge previous
   apt:
     pkg=node
     state=absent
   when: task_installed.rc == 1
   become: yes
 
-- name: fetching source
+- name: setup | fetching source
   get_url:
     url=http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}
     dest={{ nodejs_dir_src }}
     mode=0440
   when: task_installed.rc == 1
 
-- name: unpack tarball
+- name: setup | unpack tarball
   command: tar zxf {{ nodejs_tarball }} chdir=/tmp
   when: task_installed.rc == 1
 
-- name: configure
+- name: setup | configure
   shell: "/usr/bin/python ./configure --prefix={{ nodejs_path }} chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}"
   when: task_installed.rc == 1
 
-- name: make
+- name: setup | make
   shell: "/usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
   when: task_installed.rc == 1
 
-- name: make install
+- name: setup | make install
   shell: "/usr/bin/make install chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
   when: task_installed.rc == 1

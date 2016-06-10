@@ -1,3 +1,9 @@
+---
+# file: nodejs/tasks/setup.yml
+#
+# setup.
+#
+
 - name: NodeJS | Checking installed version
   shell: /usr/bin/test "$(node -v 2> /dev/null)" = v{{ node_version }}
   register: _installed

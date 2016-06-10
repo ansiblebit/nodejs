@@ -1,5 +1,5 @@
 ---
-# file: primogen/tests/test.yml
+# file: nodejs/tests/test.yml
 
 - name: tests play
   hosts: "{{ vagrant_box }}"
@@ -9,7 +9,7 @@
     debug: yes
 
   roles:
-    - role: primogen
+    - role: nodejs
 
     - role: tests
       tags: test

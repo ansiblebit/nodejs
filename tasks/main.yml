@@ -11,14 +11,12 @@
 - include: validation.yml
   tags: validation
 
-- debug: >
-    msg="invoked"
-
 - include: setup.yml
-  tags: nodejs
+  tags: installation
 
-- name: Install npm
+- name: ensure npm is installed
   apt:
     name=npm
     state=latest
   become: yes
+  tags: installation

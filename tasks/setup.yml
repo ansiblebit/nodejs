@@ -23,6 +23,7 @@
     dest="{{ nodejs_dir_src }}"
     mode=0440
   when: task_installed is defined and task_installed.rc == 1
+  become: yes
 
 - name: setup | unpack tarball
   unarchive:

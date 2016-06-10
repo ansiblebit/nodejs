@@ -11,7 +11,21 @@
 - include: validation.yml
   tags: validation
 
-- include: setup.yml
+- name: checking installed version
+  shell: "/usr/bin/test \"$(node -v 2> /dev/null)\" = v{{ nodejs_version }}"
+  register: task_installed
+  changed_when: false
+  ignore_errors: yes
+
+- name: setup | purge previous
+  apt:
+    pkg=node
+    state=absent
+  when: task_installed is defined and task_installed.rc == 1
+  become: yes
+
+- include: installation.yml
+  when: task_installed is defined and task_installed.rc == 1
   tags: installation
 
 - name: ensure npm is installed

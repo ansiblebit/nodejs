@@ -4,31 +4,22 @@
 # setup.
 #
 
-- name: setup | purge previous
-  apt:
-    pkg=node
-    state=absent
-  when: task_installed is defined and task_installed.rc == 1
-  become: yes
-
-- name: setup | fetching source
+- name: installation | download source tarball
   get_url:
     url="http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}"
     dest="{{ nodejs_dir_src }}"
     mode=0440
-  when: task_installed is defined and task_installed.rc == 1
   become: yes
 
-- name: setup | ensure unarchive directory exists
+- name: installation | ensure unarchive directory exists
   file:
     path="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
     state=directory
     owner="{{ ansible_ssh_user }}"
     group="{{ ansible_ssh_user }}"
-  when: task_installed is defined and task_installed.rc == 1
   become: yes
 
-- name: setup | unpack tarball
+- name: installation | unpack tarball
   unarchive:
     src="{{ nodejs_dir_src }}/{{ nodejs_tarball }}"
     dest="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
@@ -36,18 +27,14 @@
     owner="{{ ansible_ssh_user }}"
     group="{{ ansible_ssh_user }}"
   become: yes
-  when: task_installed is defined and task_installed.rc == 1
 
-- name: setup | configure
+- name: installation | configure
   shell: /usr/bin/python ./configure --prefix={{ nodejs_path }}
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
-  when: task_installed is defined and task_installed.rc == 1
 
-- name: setup | make
+- name: installation | make
   shell: /usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/
-  when: task_installed is defined and task_installed.rc == 1
 
-- name: setup | make install
+- name: installation | make install
   shell: /usr/bin/make install
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
-  when: task_installed is defined and task_installed.rc == 1

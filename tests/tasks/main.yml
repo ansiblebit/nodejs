@@ -6,3 +6,5 @@
 
 - name: ensure node is installed
   command: which node
+  changed_when: false
+

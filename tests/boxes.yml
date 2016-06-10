@@ -15,7 +15,7 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048 
         cpus: 1
 
   wheezy64.vagrant.dev:
@@ -27,7 +27,7 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048
         cpus: 1
 
 
@@ -42,7 +42,7 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048 
         cpus: 1
 
   trusty64.vagrant.dev:
@@ -54,7 +54,7 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048 
         cpus: 1
 
   wily64.vagrant.dev:
@@ -66,7 +66,7 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048 
         cpus: 1
 
   xenial64.vagrant.dev:
@@ -78,7 +78,7 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048 
         cpus: 1
 
   yakkety64.vagrant.dev:
@@ -90,5 +90,5 @@ vagrant:
 
     provider:
       virtualbox:
-        memory: 1024
+        memory: 2048 
         cpus: 1

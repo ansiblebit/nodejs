@@ -9,6 +9,7 @@
     msg="{{ item }} is a mandatory variable"
   when: "{{ item }} is not defined"
   with_items:
+    - nodejs_apt_dependencies
     - nodejs_version
     - nodejs_prefix
     - nodejs_tarball

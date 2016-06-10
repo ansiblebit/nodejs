@@ -4,8 +4,12 @@
 # defaults file
 #
 
+nodejs_apt_dependencies:
+  - build-essential
+
+nodejs_dir_src: /usr/local/src
+nodejs_path: /usr/local
+
 nodejs_version: 0.12.5
 nodejs_prefix: "node-v{{ nodejs_version }}"
 nodejs_tarball: "{{ nodejs_prefix }}.tar.gz"
-nodejs_path: /usr/local
-nodejs_dir_src: /usr/local/src

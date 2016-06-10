@@ -11,6 +11,12 @@
 - include: validation.yml
   tags: validation
 
+- name: ensure nodejs APT dependencies are installed
+  apt:
+    name="{{ item }}"
+    state=present
+  with_items: "{{ nodejs_apt_dependencies }}"
+
 - name: checking installed version
   shell: "/usr/bin/test \"$(node -v 2> /dev/null)\" = v{{ nodejs_version }}"
   register: task_installed

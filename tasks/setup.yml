@@ -14,7 +14,7 @@
   apt:
     pkg=node
     state=absent
-  when: task_installed.rc == 1
+  when: task_installed is defined and task_installed.rc == 1
   become: yes
 
 - name: setup | fetching source
@@ -22,23 +22,23 @@
     url="http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}"
     dest="{{ nodejs_dir_src }}"
     mode=0440
-  when: task_installed.rc == 1
+  when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | unpack tarball
   command: "tar zxf {{ nodejs_tarball }}"
     chdir=/tmp
-  when: task_installed.rc == 1
+  when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | configure
   shell: "/usr/bin/python ./configure --prefix={{ nodejs_path }}"
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"
-  when: task_installed.rc == 1
+  when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | make
   shell: "/usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
-  when: task_installed.rc == 1
+  when: task_installed is defined and task_installed.rc == 1
 
 - name: setup | make install
   shell: "/usr/bin/make install"
     chdir="{{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
-  when: task_installed.rc == 1
+  when: task_installed is defined and task_installed.rc == 1

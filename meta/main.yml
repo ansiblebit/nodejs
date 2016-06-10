@@ -9,6 +9,7 @@ galaxy_info:
   description: Ansible role to setup NodeJS.
   company: ansiblebit.org
   license: BSD
+  issue_tracker_url: https://github.com/ansiblebit/nodejs/issues
   min_ansible_version: 1.9.6
   platforms:
     - name: Ubuntu

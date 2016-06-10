@@ -4,31 +4,38 @@
 # setup.
 #
 
-- name: NodeJS | Checking installed version
-  shell: /usr/bin/test "$(node -v 2> /dev/null)" = v{{ nodejs_version }}
-  register: _installed
-  ignore_errors: True
+- name: checking installed version
+  shell: "/usr/bin/test "$(node -v 2> /dev/null)" = v{{ nodejs_version }}"
+  register: task_installed
+  changed_when: false
+  ignore_errors: yes
 
-- name: NodeJS | Purge previous
-  apt: pkg=node state=absent
-  when: _installed.rc == 1
+- name: purge previous
+  apt:
+    pkg=node
+    state=absent
+  when: task_installed.rc == 1
+  become: yes
 
-- name: NodeJS | Fetching source
-  get_url: url=http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }} dest={{ nodejs_dir_src }}
-  when: _installed.rc == 1
+- name: fetching source
+  get_url:
+    url=http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}
+    dest={{ nodejs_dir_src }}
+    mode=0440
+  when: task_installed.rc == 1
 
-- name: NodeJS | Unpack tarball
+- name: unpack tarball
   command: tar zxf {{ nodejs_tarball }} chdir=/tmp
-  when: _installed.rc == 1
+  when: task_installed.rc == 1
 
-- name: NodeJS | Configure
-  shell: /usr/bin/python ./configure --prefix={{ nodejs_path }} chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}
-  when: _installed.rc == 1
+- name: configure
+  shell: "/usr/bin/python ./configure --prefix={{ nodejs_path }} chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}"
+  when: task_installed.rc == 1
 
-- name: NodeJS | Make
-  shell: /usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/
-  when: _installed.rc == 1
+- name: make
+  shell: "/usr/bin/make chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
+  when: task_installed.rc == 1
 
-- name: NodeJS | Make install
-  shell: /usr/bin/make install chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/
-  when: _installed.rc == 1
+- name: make install
+  shell: "/usr/bin/make install chdir={{ nodejs_dir_src }}/{{ nodejs_prefix }}/"
+  when: task_installed.rc == 1

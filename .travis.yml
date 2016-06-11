@@ -1,6 +1,12 @@
 language: python
 sudo: yes
 
+addons:
+  apt:
+    packages:
+      - gcc-4.8
+      - g++-4.8
+
 matrix:
   include:
     - python: 2.7

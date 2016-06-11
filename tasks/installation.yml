@@ -14,7 +14,7 @@
 - name: installation | set tarball ownership
   file:
     path="{{ nodejs_dir_src }}/{{ nodejs_tarball }}"
-    state=directory
+    state=file
     owner="{{ ansible_env.USER }}"
     group="{{ ansible_env.USER }}"
   become: yes

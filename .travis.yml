@@ -25,4 +25,5 @@ before_cache:
 cache:
   directories:
     - ${HOME}/.cache/pip
+    - /usr/local/src
 

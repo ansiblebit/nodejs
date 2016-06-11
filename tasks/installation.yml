@@ -11,6 +11,14 @@
     mode=0440
   become: yes
 
+- name: installation | set tarball ownership
+  file:
+    path="{{ nodejs_dir_src }}/{{ nodejs_tarball }}"
+    state=directory
+    owner="{{ ansible_env.USER }}"
+    group="{{ ansible_env.USER }}"
+  become: yes
+
 - name: installation | ensure unarchive directory exists
   file:
     path="{{ nodejs_dir_src }}/{{ nodejs_prefix }}"

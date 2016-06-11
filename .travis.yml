@@ -11,7 +11,7 @@ matrix:
       env: TOXENV=py27-ansible19
 
 install:
-  - sudo pip install tox
+  - pip install tox
 
 script:
   - tox

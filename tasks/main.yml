@@ -34,10 +34,3 @@
 - include: installation.yml
   when: task_installed is defined and task_installed.rc == 1
   tags: installation
-
-- name: ensure npm is installed
-  apt:
-    name=npm
-    state=latest
-  become: yes
-  tags: installation

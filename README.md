@@ -50,9 +50,11 @@ None.
 
 ## Playbooks
 
-  - hosts: servers
-    roles:
-       - role: ansiblebit.nodejs
+```
+- hosts: servers
+  roles:
+    - role: ansiblebit.nodejs
+```
 
 
 ## Tags

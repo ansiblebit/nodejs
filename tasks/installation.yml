@@ -6,7 +6,7 @@
 
 - name: installation | download source tarball
   get_url:
-    url="http://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}"
+    url="https://nodejs.org/dist/v{{ nodejs_version }}/{{ nodejs_tarball }}"
     dest="{{ nodejs_dir_src }}"
     mode=0440
   become: yes
